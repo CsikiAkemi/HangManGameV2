@@ -167,7 +167,7 @@ public class TheGame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(650, 100, 420, 610);
+        jLabel1.setBounds(650, 30, 450, 620);
 
         Háttér.setBackground(new java.awt.Color(255, 255, 255));
         Háttér.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background.jpg"))); // NOI18N
