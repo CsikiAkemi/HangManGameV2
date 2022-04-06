@@ -53,6 +53,8 @@ public class TheGame extends javax.swing.JFrame {
         kerdes4 = new javax.swing.JLabel();
         valasz4 = new javax.swing.JTextField();
         jLab_W = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Háttér = new javax.swing.JLabel();
 
         hatter.setBackground(new java.awt.Color(89, 64, 64));
         hatter.setForeground(new java.awt.Color(97, 75, 75));
@@ -64,6 +66,7 @@ public class TheGame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(119, 83, 83));
+        setIconImages(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -94,17 +97,18 @@ public class TheGame extends javax.swing.JFrame {
 
         bember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/Nem_felakasztott_ember_KICSIKE (2).png"))); // NOI18N
         getContentPane().add(bember);
-        bember.setBounds(480, 340, 230, 390);
+        bember.setBounds(470, 330, 230, 390);
 
         gomba1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/gomba1.png"))); // NOI18N
         getContentPane().add(gomba1);
         gomba1.setBounds(-240, -50, 580, 760);
 
+        kerdes1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        kerdes1.setForeground(new java.awt.Color(255, 255, 255));
         kerdes1.setText("Mi az a Backup?");
         getContentPane().add(kerdes1);
-        kerdes1.setBounds(750, 200, 300, 14);
+        kerdes1.setBounds(1090, 160, 280, 30);
 
-        valasz1.setBackground(new java.awt.Color(255, 255, 51));
         valasz1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         valasz1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,50 +116,64 @@ public class TheGame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(valasz1);
-        valasz1.setBounds(750, 230, 280, 40);
+        valasz1.setBounds(1090, 200, 280, 40);
 
-        kerdes2.setText("Kérdés: Melyik számrendszer áll a felsorolt elemekből?  0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
+        kerdes2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        kerdes2.setForeground(new java.awt.Color(255, 255, 255));
+        kerdes2.setText("Kérdés: Melyik számrendszer áll a felsorolt elemekből?0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
         getContentPane().add(kerdes2);
-        kerdes2.setBounds(750, 280, 260, 30);
+        kerdes2.setBounds(1090, 240, 730, 40);
 
-        valasz2.setBackground(new java.awt.Color(255, 255, 102));
         valasz2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz2ActionPerformed(evt);
             }
         });
         getContentPane().add(valasz2);
-        valasz2.setBounds(750, 310, 280, 40);
+        valasz2.setBounds(1090, 290, 280, 40);
 
+        kerdes3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        kerdes3.setForeground(new java.awt.Color(255, 255, 255));
         kerdes3.setText("Kérdés:  Mi a bootolás?");
         getContentPane().add(kerdes3);
-        kerdes3.setBounds(750, 370, 280, 14);
+        kerdes3.setBounds(1090, 340, 280, 40);
 
-        valasz3.setBackground(new java.awt.Color(255, 255, 102));
         valasz3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz3ActionPerformed(evt);
             }
         });
         getContentPane().add(valasz3);
-        valasz3.setBounds(750, 400, 280, 40);
+        valasz3.setBounds(1090, 380, 280, 40);
 
+        kerdes4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        kerdes4.setForeground(new java.awt.Color(255, 255, 255));
         kerdes4.setText("Miben rendszerezzük a fájlokat?");
         getContentPane().add(kerdes4);
-        kerdes4.setBounds(750, 450, 280, 14);
+        kerdes4.setBounds(1090, 420, 360, 50);
 
-        valasz4.setBackground(new java.awt.Color(255, 204, 51));
         valasz4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz4ActionPerformed(evt);
             }
         });
         getContentPane().add(valasz4);
-        valasz4.setBounds(750, 480, 280, 40);
+        valasz4.setBounds(1090, 470, 280, 40);
 
         jLab_W.setText("jLabel1");
         getContentPane().add(jLab_W);
-        jLab_W.setBounds(620, 60, 110, 60);
+        jLab_W.setBounds(540, 70, 130, 100);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(650, 100, 420, 610);
+
+        Háttér.setBackground(new java.awt.Color(255, 255, 255));
+        Háttér.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background.jpg"))); // NOI18N
+        Háttér.setText("háttér");
+        getContentPane().add(Háttér);
+        Háttér.setBounds(0, -10, 1640, 810);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -453,6 +471,7 @@ int w=0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Háttér;
     private javax.swing.JLabel aember;
     private javax.swing.JLabel alja;
     private javax.swing.JLabel bember;
@@ -460,6 +479,7 @@ int w=0;
     private javax.swing.JLabel gomba1;
     private javax.swing.JLabel hatter;
     private javax.swing.JLabel jLab_W;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel kerdes1;
     private javax.swing.JLabel kerdes2;
     private javax.swing.JLabel kerdes3;
