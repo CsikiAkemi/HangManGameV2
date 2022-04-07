@@ -23,8 +23,8 @@ public class TheGame extends javax.swing.JFrame {
     
     public TheGame() {
         initComponents();
-        setSize(1000,1000);
-        setLocation(50,30);
+        setSize(1675,779);
+        setLocation(50,50);
     }
 
     /**
@@ -54,6 +54,7 @@ public class TheGame extends javax.swing.JFrame {
         valasz4 = new javax.swing.JTextField();
         jLab_W = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Háttér = new javax.swing.JLabel();
 
         hatter.setBackground(new java.awt.Color(89, 64, 64));
@@ -160,20 +161,28 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(valasz4);
         valasz4.setBounds(1090, 470, 280, 40);
 
-        jLab_W.setText("jLabel1");
+        jLab_W.setForeground(new java.awt.Color(255, 255, 255));
+        jLab_W.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         getContentPane().add(jLab_W);
-        jLab_W.setBounds(540, 70, 130, 100);
+        jLab_W.setBounds(560, 130, 60, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(650, 30, 450, 620);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Elrontott válasszok");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(490, 90, 210, 40);
+
         Háttér.setBackground(new java.awt.Color(255, 255, 255));
         Háttér.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background.jpg"))); // NOI18N
         Háttér.setText("háttér");
+        Háttér.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         getContentPane().add(Háttér);
-        Háttér.setBounds(0, -10, 1640, 810);
+        Háttér.setBounds(0, 0, 1660, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -480,6 +489,7 @@ int w=0;
     private javax.swing.JLabel hatter;
     private javax.swing.JLabel jLab_W;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel kerdes1;
     private javax.swing.JLabel kerdes2;
     private javax.swing.JLabel kerdes3;
