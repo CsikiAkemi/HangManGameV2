@@ -130,7 +130,7 @@ public class login extends javax.swing.JFrame {
                 
                 String mail =(rs.getString("mail")); // Vallamit itt kel változtatni a mailen
                 String jelszo =(rs.getString("jelszo"));
-                 Mail.mail = mail;
+                Mail.mail = mail;
                 System.out.println(mail);
                 
             //Jelszo és email cím validáció Sikeres
@@ -232,6 +232,7 @@ public class login extends javax.swing.JFrame {
        }catch (SQLException e) {
          e.printStackTrace();
       }
+       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed

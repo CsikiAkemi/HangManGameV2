@@ -37,6 +37,7 @@ public class TheGame extends javax.swing.JFrame {
     private void initComponents() {
 
         hatter = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         fember = new javax.swing.JLabel();
         aember = new javax.swing.JLabel();
         alja = new javax.swing.JLabel();
@@ -75,6 +76,19 @@ public class TheGame extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setText("Tovább");
+        jButton1.setActionCommand("Tovább");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(1390, 610, 180, 60);
+
         fember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/Felakasztot_ember_KICSIKE.png"))); // NOI18N
         getContentPane().add(fember);
         fember.setBounds(300, 200, 190, 430);
@@ -110,6 +124,7 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(kerdes1);
         kerdes1.setBounds(1090, 160, 280, 30);
 
+        valasz1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         valasz1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         valasz1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +140,7 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(kerdes2);
         kerdes2.setBounds(1090, 240, 730, 40);
 
+        valasz2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         valasz2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz2ActionPerformed(evt);
@@ -139,6 +155,7 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(kerdes3);
         kerdes3.setBounds(1090, 340, 280, 40);
 
+        valasz3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         valasz3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz3ActionPerformed(evt);
@@ -153,6 +170,7 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(kerdes4);
         kerdes4.setBounds(1090, 420, 360, 50);
 
+        valasz4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         valasz4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valasz4ActionPerformed(evt);
@@ -169,7 +187,7 @@ public class TheGame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(650, 30, 450, 620);
+        jLabel1.setBounds(680, 10, 450, 620);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -388,7 +406,7 @@ int w=0;
                 g.setVisible(false);
                 g.dispose();
         }
-        if(w1 == 0){
+        /*if(w1 == 0){
 
                 System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
                 ToWin tw=new ToWin();
@@ -438,10 +456,66 @@ int w=0;
                 
                 //g.setDefaultCloseOperation(TheGame.EXIT_ON_CLOSE);
                 //TheGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
+        }*/
        
         
     }//GEN-LAST:event_valasz4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*TheGame g=new TheGame();
+        g.setVisible(false);
+        g.dispose();
+        ToWin tw=new ToWin();
+        tw.setVisible(true);*/
+        int w1=Integer.parseInt(jLab_W.getText());
+        if(w1 == 0){
+
+                System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
+                ToWin tw=new ToWin();
+                tw.setVisible(true);
+                java.sql.Connection con = null;
+                PreparedStatement pst = null;
+                PreparedStatement stmt = null;
+                ResultSet rs = null;
+        
+        try{
+            
+            con = DriverManager.getConnection("jdbc:mysql://localhost/webshopdatabase","root", ""); 
+            
+             stmt = con.prepareStatement (" UPDATE user SET game_points=? WHERE mail=? ");
+             
+                    
+                    int game_points;
+                    
+                    game_points= 1;
+                    
+                        stmt.setInt(1 , game_points );
+                        stmt.setString(2, Mail.mail);
+                        System.out.println("e-mail cím valid");
+
+                        stmt.executeUpdate();
+                        System.out.println(game_points);
+                        System.out.println("A pontszám feltöltve  a megfelelő email című felhasználóhoz");
+        con.close();    
+
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+      
+     
+       
+        }else{
+            System.out.println("Vesztettél");
+                TheGame g=new TheGame();
+                g.setVisible(false);
+                g.dispose();
+                ToLose tl=new ToLose();
+                tl.setVisible(true);
+                
+                System.out.println(w1);
+        }
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,6 +561,7 @@ int w=0;
     private javax.swing.JLabel fember;
     private javax.swing.JLabel gomba1;
     private javax.swing.JLabel hatter;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLab_W;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
