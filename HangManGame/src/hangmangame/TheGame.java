@@ -13,16 +13,13 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author sisin
+ * @author Csiki Akemi
  */
 public class TheGame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    
     public TheGame() {
         initComponents();
+//Ablak mérteének beállítása
         setSize(1675,779);
         setLocation(50,50);
     }
@@ -208,7 +205,7 @@ int w=0;
     private void valasz1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valasz1ActionPerformed
         // Kérdés:  Mi az a Backup?
         String V1=valasz1.getText();
-        //int w =Integer.parseInt(jLab_W.getText());
+        //Lehetséges válaszok       
         ArrayList<String> Jvalasz1 = new ArrayList<String>();
             Jvalasz1.add("Biztonsági másolat");
             Jvalasz1.add("biztonsági másolat");
@@ -222,23 +219,21 @@ int w=0;
             Jvalasz1.add("Biztonsagimasolat");
             Jvalasz1.add("BIZTONSÁGIMÁSOLAT");
             System.out.println(Jvalasz1);
-   
+        //Helyes válasz megadása esetén
         if( Jvalasz1.contains(V1)){
 
             jLab_W.setText(""+w);
             kerdes2.setVisible(true);
             valasz2.setVisible(true);
             valasz1.setEnabled(false);
-        }
-        else{
+        //Helytelen válasz megadása esetén
+        }else{
             w=w+1;
             jLab_W.setText(""+w);
             kerdes2.setVisible(true);
             valasz2.setVisible(true);
             valasz1.setEnabled(false);
-            
             alja.setVisible(true);
-        
         }
     }//GEN-LAST:event_valasz1ActionPerformed
 
@@ -246,8 +241,8 @@ int w=0;
         
         // Kérdés: Melyik számrendszer áll a felsorolt elemekből?  0, 1, 2, 3, 4, 5, 6, 7, 8, 9
         String V2=valasz2.getText();
-        
         int w1 =Integer.parseInt(jLab_W.getText());
+        //Lehetséges válaszok  
         ArrayList<String> Jvalasz2 = new ArrayList<String>();
             Jvalasz2.add("Decimális");
             Jvalasz2.add("decimális");
@@ -257,28 +252,25 @@ int w=0;
             Jvalasz2.add("DECIMÁLIS");
            
             System.out.println(Jvalasz2);
-   
+        //Helyes válasz megadása esetén    
         if( Jvalasz2.contains(V2)){
 
             jLab_W.setText(""+w1);
             kerdes3.setVisible(true);
             valasz3.setVisible(true);
             valasz2.setEnabled(false);
-        }
-        else{
+        //Helytelen válasz megadása esetén
+        }else{
             w1=w1+1;
             jLab_W.setText(""+w1);
             kerdes3.setVisible(true);
             valasz3.setVisible(true);
             valasz2.setEnabled(false);
             
-            
             if (w1==1)
                 alja.setVisible(true);
             else if(w1==2){
-               // alja.setVisible(true);
                 kozepe.setVisible(true);
-                
                 alja.setVisible(true); 
            }
         
@@ -287,14 +279,14 @@ int w=0;
     }//GEN-LAST:event_valasz2ActionPerformed
         
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        // Megjelenítendő iconok
         aember.setVisible(true);
         alja.setVisible(false);
         kozepe.setVisible(false);
         teteje.setVisible(false);
         fember.setVisible(false);
         bember.setVisible(false);
-        
+        // Megjelenítendő mezők
         kerdes2.setVisible(false);
         valasz2.setVisible(false);
         kerdes3.setVisible(false);
@@ -304,13 +296,12 @@ int w=0;
     }//GEN-LAST:event_formWindowOpened
 
     private void valasz3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valasz3ActionPerformed
-        // TODO add your handling code here:
         // Kérdés:  Mi a bootolás?
         String V3=valasz3.getText();
-        
         int w1 =Integer.parseInt(jLab_W.getText());
+        //Lehetséges válaszok  
         ArrayList<String> Jvalasz3 = new ArrayList<String>();
-            Jvalasz3.add("Rendszerbetöltés"); //Írd át rosszul írtad
+            Jvalasz3.add("Rendszerbetöltés"); 
             Jvalasz3.add("rendszerbetöltés");
             Jvalasz3.add("Rendszerbetoltes");
             Jvalasz3.add("rendszerbetoltes");
@@ -318,15 +309,15 @@ int w=0;
             Jvalasz3.add("RENDSZERBETOLTES");
            
             System.out.println(Jvalasz3);
-   
+        //Helyes válasz megadása esetén
         if( Jvalasz3.contains(V3)){
 
             jLab_W.setText(""+w1);
             kerdes4.setVisible(true);
             valasz4.setVisible(true);
             valasz3.setEnabled(false);
-        }
-        else{
+        //Helytelen válasz megadása esetén
+        }else{
             w1=w1+1;
             jLab_W.setText(""+w1);
             
@@ -335,28 +326,24 @@ int w=0;
                     valasz4.setVisible(true);
                     valasz3.setEnabled(false);
                     kerdes4.setVisible(true);
-                }
-                else if (w1==2){
+                }else if (w1==2){
                      kozepe.setVisible(true);
                      valasz4.setVisible(true);
                      valasz3.setEnabled(false);
                      kerdes4.setVisible(true);
-                }
-                else if (w1==3){
+                }else if (w1==3){
                     teteje.setVisible(true);
                     valasz4.setVisible(true);
                     kerdes4.setVisible(true);
-                    valasz3.setEnabled(false);
-                   
+                    valasz3.setEnabled(false); 
                 }
         
         }
     }//GEN-LAST:event_valasz3ActionPerformed
 
     private void valasz4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valasz4ActionPerformed
-       
-        // Kérdés:  Miben rendszerezzük a fájlokat?
-
+         // Kérdés:  Miben rendszerezzük a fájlokat?
+        int w1=Integer.parseInt(jLab_W.getText());
         String V4=valasz4.getText();
         ArrayList<String> Jvalasz4 = new ArrayList<String>();
             Jvalasz4.add("Mappákban");
@@ -366,22 +353,22 @@ int w=0;
             Jvalasz4.add("MAPPÁKBAN");
             Jvalasz4.add("MAPPAKBAN");
             
-           
             System.out.println(Jvalasz4);
-   
+
         
-        
-        int w1=Integer.parseInt(jLab_W.getText());
-        valasz3.setEnabled(false);
+        /*valasz3.setEnabled(false);
         valasz4.setEnabled(false);
         alja.setVisible(true);
         kozepe.setVisible(true);
-        teteje.setVisible(true);
+        teteje.setVisible(true);*/
         //Ha ezek már látaszódnak ha 3 rossz válasz volt akkor ezek jhelenítődnek meg
         if( Jvalasz4.contains(V4)){
-
+            
            jLab_W.setText(""+w1);
            aember.setVisible(false);
+           valasz3.setEnabled(false);
+           valasz4.setEnabled(false);
+           
            //bember.setVisible(true);
            TheGame g=new TheGame();
                 g.setVisible(false);
@@ -402,9 +389,9 @@ int w=0;
            teteje.setVisible(true);
            fember.setVisible(true);
            aember.setVisible(false);
-           TheGame g=new TheGame();
+           /*TheGame g=new TheGame();
                 g.setVisible(false);
-                g.dispose();
+                g.dispose();*/
         }
         /*if(w1 == 0){
 

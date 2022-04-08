@@ -16,17 +16,16 @@ import java.time.LocalDateTime;
 import java.time.Period;
 /**
  *
- * @author sisin
+ * @author Csiki Akemi
  */
 public class login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
     public login() {
         initComponents();
-        setSize(925,609);
+//Ablak mérteének beállítása
+        setSize(925,609); 
         setLocation(50,50);
+        
     }
 
     /**
@@ -109,120 +108,94 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        //Bejelentkezéshez szükséges Statement-ek és Connect-tek
         java.sql.Connection con = null;
         PreparedStatement pst = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
        
        try{
-           
-            //Kapcsolat az adatbázishoz(webshopdatabase)
+            //Kapcsolat az adatbázisal(webshopdatabase)
             con = DriverManager.getConnection("jdbc:mysql://localhost/webshopdatabase","root", ""); 
             String query = " SELECT * FROM user WHERE mail=? and jelszo=?"; 
+            //Beviteli mezők aktiválása 
             pst = con.prepareStatement(query);
             pst.setString(1,txtemail.getText());
             pst.setString(2,txtjelszo.getText());
             rs = pst.executeQuery();
-           
-            //Sikeres kapcsolat
-            if(rs.next()){  
-                
-                String mail =(rs.getString("mail")); // Vallamit itt kel változtatni a mailen
-                String jelszo =(rs.getString("jelszo"));
-                Mail.mail = mail;
-                System.out.println(mail);
-                
-            //Jelszo és email cím validáció Sikeres
             
+            //Sikeres  adatbázis kapcsolat és lekérdezés
+            if(rs.next()){  
+                //Változók létrehozás az adatbázis alapján
+                String mail =(rs.getString("mail")); 
+                String jelszo =(rs.getString("jelszo"));
+                //Globális változó a mail-re
+                Mail.mail = mail;
+                System.out.println(mail);  
+                //Jelszo és email cím validáció Sikeres
                 if(jelszo.equals(jelszo) && mail.equals(mail)){
-                    
                     try{
-                    //A USER EMAIL MEZŐHÖZ KAPCSOLÓDÓ UTOLSÓ JÁTÉK DÁTUMA
+                    //A user email mezőjéhez kapcsolodó utolsó játék dátumának kiválasztása
                     stmt = con.prepareStatement (" SELECT last_game FROM user WHERE mail=? ");
                     stmt.setString(1, rs.getString("mail"));
                     ResultSet result=stmt.executeQuery();
                     Date myEndDate = null;
-                    
-                    
                     while(result.next())
-                        myEndDate = result.getDate("last_game"); //KIOLVASOM ÉS VÁLTOZÓBA MENTEM A LAST_GAME DÁTUMÁT
-                      //  System.out.println(result.getDate("last_game"));
-                    
-                    
-                    //DÁTUMVIZSGÁLAT
-                    //    https://www.baeldung.com/java-period-duration?fbclid=IwAR2axXo_ObrJXan1fEPB8UXMsQOLAvXcsIwUSHlKmLxT9Kjuy5dXHYZ5xUA#period-class
+                        myEndDate = result.getDate("last_game"); //KIOLVASOM ÉS VÁLTOZÓBA MENTEM A LAST_GAME DÁTUMÁT           
+                    //Dátumvizsgálat
+                    //https://www.baeldung.com/java-period-duration?fbclid=IwAR2axXo_ObrJXan1fEPB8UXMsQOLAvXcsIwUSHlKmLxT9Kjuy5dXHYZ5xUA#period-class
                     LocalDate startDate = LocalDate.now(); //AKTUÁLIS IDŐ
                     LocalDate endDate = LocalDate.parse(String.valueOf(myEndDate)); // -> LAST_GAME
                     Period period = Period.between(startDate, endDate); //A KETTŐ KÖZTI KÜLÖNBSÉG
                     System.out.println(period.getDays());
-                    
-                    
-                    
+                    //Dátum vizgsálat megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: 5 )
                     if(period.getDays() > +4){
                         System.out.println("5 naptól 5-el több. Játszhatsz!");  //DEBUG
-                    
                         //Hozzáad egy mai dátumot a LAST_GAME oszlophoz ahol az EMAIL = belépő EMAIL-el
                         stmt = con.prepareStatement (" UPDATE user SET last_game=? WHERE mail=? ");
-                        
                         LocalDateTime localDateTime = LocalDateTime.now();
                         java.sql.Date last_game = java.sql.Date.valueOf(localDateTime.toLocalDate());
                         java.sql.Time time = java.sql.Time.valueOf(localDateTime.toLocalTime());
-                        
                         stmt.setDate(1, last_game);
                         stmt.setString(2, rs.getString("mail"));
                         stmt.executeUpdate();
                         System.out.println(last_game);
-                        
                         new login().setVisible(false);
                         TheGame g=new TheGame();
                         g.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Sikeres bejelentkezés");
-                        
-                        con.close();    
-                     
-                        
+                    //Dátum vizgsálat megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: 5 )                     
                     }else if(period.getDays() < -4){
                         System.out.println("5 naptól 5-el kevesebb. Játszhatsz!");
-                        
                         //Hozzáad egy mai dátumot a LAST_GAME oszlophoz ahol az EMAIL = belépő EMAIL-el
                         stmt = con.prepareStatement (" UPDATE user SET last_game=? WHERE mail=? ");
-                        
                         LocalDateTime localDateTime = LocalDateTime.now();
                         java.sql.Date last_game = java.sql.Date.valueOf(localDateTime.toLocalDate());
                         java.sql.Time time = java.sql.Time.valueOf(localDateTime.toLocalTime());
-                        
                         stmt.setDate(1, last_game);
                         stmt.setString(2, rs.getString("mail"));
                         stmt.executeUpdate();
-                    
                         new login().setVisible(false);
                         TheGame g=new TheGame();
                         g.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Sikeres bejelentkezés");
-                        
-                        con.close(); 
-                        
-                    
+                        //con.close();      
+                    //Dátum vizgsálat NEM megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: kevesebb mint 5 nap)   
                     }else{
                         System.out.println("5 naptól 5-el se több se kevesebb. Nem játszhatsz!");
                         //new login().setVisible(false);
                         JOptionPane.showMessageDialog(null, "Kevesebb mint öt napja játszottál!");   
-                        TheGame g=new TheGame(); //Azért raktam bele mert nem engedett be és így tudom csinálni a pótszámlálást
-                        g.setVisible(true);
+                        //TheGame g=new TheGame(); //Azért raktam bele mert nem engedett be és így tudom csinálni a pótszámlálást
+                        //g.setVisible(true);
                     }
-                    
-                    
+
                     }catch (SQLException e) {
                     e.printStackTrace();
                     
-                        }
-                        
-                }
-                
-            //Sikertelen bejelentkezés
-            
-             }else{
+                        } 
+                } 
+            //Jelszo és email cím validáció Sikertelen
+            }else{
             JOptionPane.showMessageDialog(null, "Sikertelen bejelentkezés, Próbáld újra!");
             new login().setVisible(true);
             txtemail.setText(" ");
