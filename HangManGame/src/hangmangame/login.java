@@ -185,8 +185,8 @@ public class login extends javax.swing.JFrame {
                         System.out.println("5 naptól 5-el se több se kevesebb. Nem játszhatsz!");
                         //new login().setVisible(false);
                         JOptionPane.showMessageDialog(null, "Kevesebb mint öt napja játszottál!");   
-                        //TheGame g=new TheGame(); //Azért raktam bele mert nem engedett be és így tudom csinálni a pótszámlálást
-                        //g.setVisible(true);
+                       TheGame g=new TheGame(); //Azért raktam bele mert nem engedett be és így tudom csinálni a pótszámlálást
+                       g.setVisible(true);
                     }
 
                     }catch (SQLException e) {

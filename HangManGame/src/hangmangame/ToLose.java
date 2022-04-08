@@ -50,10 +50,9 @@ public class ToLose extends javax.swing.JFrame {
         jButton1.setBounds(520, 360, 140, 50);
 
         Szöveg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/szöveg2.jpg"))); // NOI18N
-        Szöveg.setText("jLabel2");
         Szöveg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         getContentPane().add(Szöveg);
-        Szöveg.setBounds(140, 140, 400, 170);
+        Szöveg.setBounds(120, 130, 460, 170);
 
         Címsor.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         Címsor.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,11 +71,7 @@ public class ToLose extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*ToLose tl=new ToLose();
-                tl.setVisible(false);
-                tl.dispose();
-                tl.setDefaultCloseOperation(ToLose.EXIT_ON_CLOSE);*/
-        this.dispose();
+    this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

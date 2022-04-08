@@ -342,9 +342,10 @@ int w=0;
     }//GEN-LAST:event_valasz3ActionPerformed
 
     private void valasz4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valasz4ActionPerformed
-         // Kérdés:  Miben rendszerezzük a fájlokat?
-        int w1=Integer.parseInt(jLab_W.getText());
+         // Kérdés:  Miben rendszerezzük a fájlokat? 
         String V4=valasz4.getText();
+        int w1=Integer.parseInt(jLab_W.getText());
+        //Lehetséges válaszok  
         ArrayList<String> Jvalasz4 = new ArrayList<String>();
             Jvalasz4.add("Mappákban");
             Jvalasz4.add("mappákban");
@@ -355,20 +356,38 @@ int w=0;
             
             System.out.println(Jvalasz4);
 
+            jLab_W.setText(""+w1);
+            valasz4.setEnabled(false);
+        //Helyes válasz megadása esetén
+        if(w1==0){
+            aember.setVisible(false);
+            jLab_W.setText(""+w1);
+            alja.setVisible(true);
+            kozepe.setVisible(true);
+            teteje.setVisible(true);
+            bember.setVisible(true);
+            valasz4.setEnabled(false); 
+        //Helytelen válasz megadása esetén  
+        }else{
+            aember.setVisible(false);
+            jLab_W.setText(""+w1);
+            alja.setVisible(true);
+            kozepe.setVisible(true);
+            teteje.setVisible(true);
+            fember.setVisible(true);
+            valasz4.setEnabled(false); 
         
+        }
         /*valasz3.setEnabled(false);
         valasz4.setEnabled(false);
         alja.setVisible(true);
         kozepe.setVisible(true);
-        teteje.setVisible(true);*/
+        teteje.setVisible(true);
         //Ha ezek már látaszódnak ha 3 rossz válasz volt akkor ezek jhelenítődnek meg
         if( Jvalasz4.contains(V4)){
-            
+
            jLab_W.setText(""+w1);
            aember.setVisible(false);
-           valasz3.setEnabled(false);
-           valasz4.setEnabled(false);
-           
            //bember.setVisible(true);
            TheGame g=new TheGame();
                 g.setVisible(false);
@@ -389,10 +408,10 @@ int w=0;
            teteje.setVisible(true);
            fember.setVisible(true);
            aember.setVisible(false);
-           /*TheGame g=new TheGame();
+           TheGame g=new TheGame();
                 g.setVisible(false);
-                g.dispose();*/
-        }
+                g.dispose();
+        }*/
         /*if(w1 == 0){
 
                 System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
@@ -449,12 +468,8 @@ int w=0;
     }//GEN-LAST:event_valasz4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*TheGame g=new TheGame();
-        g.setVisible(false);
-        g.dispose();
-        ToWin tw=new ToWin();
-        tw.setVisible(true);*/
         int w1=Integer.parseInt(jLab_W.getText());
+        //Minden választ helyesen adott meg a felhazsnáló
         if(w1 == 0){
 
                 System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
@@ -483,14 +498,14 @@ int w=0;
                         stmt.executeUpdate();
                         System.out.println(game_points);
                         System.out.println("A pontszám feltöltve  a megfelelő email című felhasználóhoz");
-        con.close();    
+            con.close();    
 
         }catch (SQLException e) {
             System.out.println(e.getMessage());
         }
       
      
-       
+       //Nem minden váléaszt helyesen adott meg a felhazsnáló
         }else{
             System.out.println("Vesztettél");
                 TheGame g=new TheGame();
