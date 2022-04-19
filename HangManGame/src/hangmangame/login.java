@@ -38,34 +38,33 @@ public class login extends javax.swing.JFrame {
     private void initComponents() {
 
         kulcsos = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        mail = new javax.swing.JLabel();
+        jelszo = new javax.swing.JLabel();
         txtjelszo = new javax.swing.JPasswordField();
         txtemail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Szöveg = new javax.swing.JLabel();
+        Háttér = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(920, 580));
         getContentPane().setLayout(null);
 
         kulcsos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/Lakatos_emberke.png"))); // NOI18N
         getContentPane().add(kulcsos);
         kulcsos.setBounds(89, 146, 250, 288);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Email cím");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(377, 161, 142, 35);
+        mail.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        mail.setForeground(new java.awt.Color(255, 255, 255));
+        mail.setText("E-mail cím");
+        getContentPane().add(mail);
+        mail.setBounds(377, 161, 142, 35);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Jelszó");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(377, 251, 142, 32);
+        jelszo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jelszo.setForeground(new java.awt.Color(255, 255, 255));
+        jelszo.setText("Jelszó");
+        getContentPane().add(jelszo);
+        jelszo.setBounds(377, 251, 142, 32);
 
         txtjelszo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         getContentPane().add(txtjelszo);
@@ -82,7 +81,7 @@ public class login extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Bejelentkezes");
+        jButton1.setText("Bejelentkezés");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -91,24 +90,24 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(377, 448, 171, 62);
 
-        jLabel4.setFont(new java.awt.Font("Gabriola", 3, 60)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Akasztófa játék");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(281, 49, 335, 59);
+        Szöveg.setFont(new java.awt.Font("Gabriola", 3, 60)); // NOI18N
+        Szöveg.setForeground(new java.awt.Color(255, 255, 255));
+        Szöveg.setText("Akasztófa játék");
+        Szöveg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        getContentPane().add(Szöveg);
+        Szöveg.setBounds(281, 49, 335, 59);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background2.0.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 910, 570);
+        Háttér.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background2.0.jpg"))); // NOI18N
+        Háttér.setText("jLabel3");
+        Háttér.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
+        getContentPane().add(Háttér);
+        Háttér.setBounds(0, 0, 910, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Bejelentkezéshez szükséges Statement-ek és Connect-tek
+        //Adatkapcsolatokhoz szükséges Statement-ek és Connect-tek
         java.sql.Connection con = null;
         PreparedStatement pst = null;
         PreparedStatement stmt = null;
@@ -118,6 +117,7 @@ public class login extends javax.swing.JFrame {
             //Kapcsolat az adatbázisal(webshopdatabase)
             con = DriverManager.getConnection("jdbc:mysql://localhost/webshopdatabase","root", ""); 
             String query = " SELECT * FROM user WHERE mail=? and jelszo=?"; 
+            
             //Beviteli mezők aktiválása 
             pst = con.prepareStatement(query);
             pst.setString(1,txtemail.getText());
@@ -129,6 +129,7 @@ public class login extends javax.swing.JFrame {
                 //Változók létrehozás az adatbázis alapján
                 String mail =(rs.getString("mail")); 
                 String jelszo =(rs.getString("jelszo"));
+                
                 //Globális változó a mail-re
                 Mail.mail = mail;
                 System.out.println(mail);  
@@ -148,9 +149,11 @@ public class login extends javax.swing.JFrame {
                     LocalDate endDate = LocalDate.parse(String.valueOf(myEndDate)); // -> LAST_GAME
                     Period period = Period.between(startDate, endDate); //A KETTŐ KÖZTI KÜLÖNBSÉG
                     System.out.println(period.getDays());
+                    
                     //Dátum vizgsálat megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: 5 )
                     if(period.getDays() > +4){
                         System.out.println("5 naptól 5-el több. Játszhatsz!");  //DEBUG
+                        
                         //Hozzáad egy mai dátumot a LAST_GAME oszlophoz ahol az EMAIL = belépő EMAIL-el
                         stmt = con.prepareStatement (" UPDATE user SET last_game=? WHERE mail=? ");
                         LocalDateTime localDateTime = LocalDateTime.now();
@@ -164,9 +167,11 @@ public class login extends javax.swing.JFrame {
                         TheGame g=new TheGame();
                         g.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Sikeres bejelentkezés");
+                        
                     //Dátum vizgsálat megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: 5 )                     
                     }else if(period.getDays() < -4){
                         System.out.println("5 naptól 5-el kevesebb. Játszhatsz!");
+                        
                         //Hozzáad egy mai dátumot a LAST_GAME oszlophoz ahol az EMAIL = belépő EMAIL-el
                         stmt = con.prepareStatement (" UPDATE user SET last_game=? WHERE mail=? ");
                         LocalDateTime localDateTime = LocalDateTime.now();
@@ -179,14 +184,12 @@ public class login extends javax.swing.JFrame {
                         TheGame g=new TheGame();
                         g.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Sikeres bejelentkezés");
-                        //con.close();      
+                            
                     //Dátum vizgsálat NEM megfelelő eredménnyel (Utolsó játék óta eletelt napok száma: kevesebb mint 5 nap)   
                     }else{
                         System.out.println("5 naptól 5-el se több se kevesebb. Nem játszhatsz!");
-                        //new login().setVisible(false);
                         JOptionPane.showMessageDialog(null, "Kevesebb mint öt napja játszottál!");   
-                       TheGame g=new TheGame(); //Azért raktam bele mert nem engedett be és így tudom csinálni a pótszámlálást
-                       g.setVisible(true);
+                       
                     }
 
                     }catch (SQLException e) {
@@ -248,12 +251,12 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Háttér;
+    private javax.swing.JLabel Szöveg;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jelszo;
     private javax.swing.JLabel kulcsos;
+    private javax.swing.JLabel mail;
     private javax.swing.JTextField txtemail;
     private javax.swing.JPasswordField txtjelszo;
     // End of variables declaration//GEN-END:variables

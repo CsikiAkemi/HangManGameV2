@@ -33,7 +33,6 @@ public class TheGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hatter = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         fember = new javax.swing.JLabel();
         aember = new javax.swing.JLabel();
@@ -51,17 +50,9 @@ public class TheGame extends javax.swing.JFrame {
         kerdes4 = new javax.swing.JLabel();
         valasz4 = new javax.swing.JTextField();
         jLab_W = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        halal = new javax.swing.JLabel();
+        Szöveg = new javax.swing.JLabel();
         Háttér = new javax.swing.JLabel();
-
-        hatter.setBackground(new java.awt.Color(89, 64, 64));
-        hatter.setForeground(new java.awt.Color(97, 75, 75));
-        hatter.setText("jLabel1");
-        hatter.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        hatter.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        hatter.setMinimumSize(new java.awt.Dimension(1000, 1000));
-        hatter.setPreferredSize(new java.awt.Dimension(1000, 1000));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(119, 83, 83));
@@ -76,7 +67,6 @@ public class TheGame extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setText("Tovább");
-        jButton1.setActionCommand("Tovább");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +123,7 @@ public class TheGame extends javax.swing.JFrame {
 
         kerdes2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         kerdes2.setForeground(new java.awt.Color(255, 255, 255));
-        kerdes2.setText("Kérdés: Melyik számrendszer áll a felsorolt elemekből?0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
+        kerdes2.setText("Hány mb 0.5 gb?");
         getContentPane().add(kerdes2);
         kerdes2.setBounds(1090, 240, 730, 40);
 
@@ -181,16 +171,16 @@ public class TheGame extends javax.swing.JFrame {
         getContentPane().add(jLab_W);
         jLab_W.setBounds(560, 130, 60, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(680, 10, 450, 620);
+        halal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/halál.png"))); // NOI18N
+        halal.setText("jLabel1");
+        getContentPane().add(halal);
+        halal.setBounds(680, 10, 450, 620);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Elrontott válasszok");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(490, 90, 210, 40);
+        Szöveg.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Szöveg.setForeground(new java.awt.Color(255, 255, 255));
+        Szöveg.setText("Elrontott válaszok");
+        getContentPane().add(Szöveg);
+        Szöveg.setBounds(490, 90, 210, 40);
 
         Háttér.setBackground(new java.awt.Color(255, 255, 255));
         Háttér.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hangmangame/background.jpg"))); // NOI18N
@@ -218,6 +208,16 @@ int w=0;
             Jvalasz1.add("BIZTONSAGIMASOLAT");
             Jvalasz1.add("Biztonsagimasolat");
             Jvalasz1.add("BIZTONSÁGIMÁSOLAT");
+       
+            Jvalasz1.add("biztonsági mentést");
+            Jvalasz1.add("Biztonságimentés");
+            Jvalasz1.add("Biztonsagi mentes");
+            Jvalasz1.add("biztonsagi mentes");
+            Jvalasz1.add("Biztonsagimentes");
+            Jvalasz1.add("BIZTONSAGI MENTES");
+            Jvalasz1.add("BIZTONSÁGI MENTÉS");
+            Jvalasz1.add("BIZTONSAGIMENTES");
+        
             System.out.println(Jvalasz1);
         //Helyes válasz megadása esetén
         if( Jvalasz1.contains(V1)){
@@ -239,17 +239,15 @@ int w=0;
 
     private void valasz2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valasz2ActionPerformed
         
-        // Kérdés: Melyik számrendszer áll a felsorolt elemekből?  0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+        // Kérdés: Hány mb 0.5 gb?
         String V2=valasz2.getText();
         int w1 =Integer.parseInt(jLab_W.getText());
         //Lehetséges válaszok  
         ArrayList<String> Jvalasz2 = new ArrayList<String>();
-            Jvalasz2.add("Decimális");
-            Jvalasz2.add("decimális");
-            Jvalasz2.add("decimalis");
-            Jvalasz2.add("Decimalis");
-            Jvalasz2.add("DECIMALIS");
-            Jvalasz2.add("DECIMÁLIS");
+            Jvalasz2.add("500");
+            Jvalasz2.add("500mb");
+            Jvalasz2.add("500 megabyte");
+            
            
             System.out.println(Jvalasz2);
         //Helyes válasz megadása esetén    
@@ -354,10 +352,18 @@ int w=0;
             Jvalasz4.add("MAPPÁKBAN");
             Jvalasz4.add("MAPPAKBAN");
             
+            Jvalasz4.add("Mappában");
+            Jvalasz4.add("mappában");
+            Jvalasz4.add("Mappaban");
+            Jvalasz4.add("mappaban");
+            Jvalasz4.add("MAPPÁBAN");
+            Jvalasz4.add("MAPPABAN");
+            
             System.out.println(Jvalasz4);
 
             jLab_W.setText(""+w1);
             valasz4.setEnabled(false);
+            
         //Helyes válasz megadása esetén
         if(w1==0){
             aember.setVisible(false);
@@ -367,8 +373,12 @@ int w=0;
             teteje.setVisible(true);
             bember.setVisible(true);
             valasz4.setEnabled(false); 
+            halal.setVisible(false);
+            
         //Helytelen válasz megadása esetén  
         }else{
+            w1=w1+1;
+            jLab_W.setText(""+w1);
             aember.setVisible(false);
             jLab_W.setText(""+w1);
             alja.setVisible(true);
@@ -378,101 +388,17 @@ int w=0;
             valasz4.setEnabled(false); 
         
         }
-        /*valasz3.setEnabled(false);
-        valasz4.setEnabled(false);
-        alja.setVisible(true);
-        kozepe.setVisible(true);
-        teteje.setVisible(true);
-        //Ha ezek már látaszódnak ha 3 rossz válasz volt akkor ezek jhelenítődnek meg
-        if( Jvalasz4.contains(V4)){
-
-           jLab_W.setText(""+w1);
-           aember.setVisible(false);
-           //bember.setVisible(true);
-           TheGame g=new TheGame();
-                g.setVisible(false);
-                g.dispose();
-           
-        if(w1 < 1){
-         bember.setVisible(true);
-         
-        }
-           
-       
-        //rosz válasznál ezek megjelnítődnek
-        }  else {
-           w1=w1+1;
-           jLab_W.setText(""+w1);
-           alja.setVisible(true);
-           kozepe.setVisible(true);
-           teteje.setVisible(true);
-           fember.setVisible(true);
-           aember.setVisible(false);
-           TheGame g=new TheGame();
-                g.setVisible(false);
-                g.dispose();
-        }*/
-        /*if(w1 == 0){
-
-                System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
-                ToWin tw=new ToWin();
-                tw.setVisible(true);
-                java.sql.Connection con = null;
-                PreparedStatement pst = null;
-                PreparedStatement stmt = null;
-                ResultSet rs = null;
         
-        try{
-            
-            con = DriverManager.getConnection("jdbc:mysql://localhost/webshopdatabase","root", ""); 
-            
-             stmt = con.prepareStatement (" UPDATE user SET game_points=? WHERE mail=? ");
-             
-                    
-                    int game_points;
-                    
-                    game_points= 1;
-                    
-                        stmt.setInt(1 , game_points );
-                        stmt.setString(2, Mail.mail);
-                        System.out.println("e-mail cím valid");
-
-                        stmt.executeUpdate();
-                        System.out.println(game_points);
-                        System.out.println("A pontszám feltöltve  a megfelelő email című felhasználóhoz");
-        con.close();    
-
-        }catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-      
-     
-       
-        }else{
-            System.out.println("Vesztettél");
-                TheGame g=new TheGame();
-                g.setVisible(false);
-                g.dispose();
-                ToLose tl=new ToLose();
-                tl.setVisible(true);
-                
-                System.out.println(w1);
-               
-                 //JFrame TheGame = new JFrame("Exit on Close Example");
-                
-                //g.setDefaultCloseOperation(TheGame.EXIT_ON_CLOSE);
-                //TheGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }*/
        
         
     }//GEN-LAST:event_valasz4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int w1=Integer.parseInt(jLab_W.getText());
-        //Minden választ helyesen adott meg a felhazsnáló
+        //Minden választ helyesen adott meg a felhasználó
         if(w1 == 0){
 
-                System.out.println("Szuper vagy 10% kedvezmény. NYERTÉL");
+                System.out.println("NYERTÉL");
                 ToWin tw=new ToWin();
                 tw.setVisible(true);
                 java.sql.Connection con = null;
@@ -505,7 +431,7 @@ int w=0;
         }
       
      
-       //Nem minden váléaszt helyesen adott meg a felhazsnáló
+       //Nem minden váléaszt helyesen adott meg a felhasználó
         }else{
             System.out.println("Vesztettél");
                 TheGame g=new TheGame();
@@ -557,16 +483,15 @@ int w=0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Háttér;
+    private javax.swing.JLabel Szöveg;
     private javax.swing.JLabel aember;
     private javax.swing.JLabel alja;
     private javax.swing.JLabel bember;
     private javax.swing.JLabel fember;
     private javax.swing.JLabel gomba1;
-    private javax.swing.JLabel hatter;
+    private javax.swing.JLabel halal;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLab_W;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel kerdes1;
     private javax.swing.JLabel kerdes2;
     private javax.swing.JLabel kerdes3;
